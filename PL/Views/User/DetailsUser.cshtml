@@ -1,0 +1,40 @@
+﻿@model PL.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "DetailsUser";
+}
+<div class="container">
+
+    <div class="row box-shadow ">
+
+        <div class="col mt-lg-2 ">
+
+            <h1 class="display-4 d-flex justify-content-center">Hello @Model.Name!</h1>
+            @if (Model.PlaneModels.Count > 0)
+            {
+                <h4 class="d-flex justify-content-center">Your list of plane models</h4>
+                <ul class="list-group">
+                    @foreach (var item in @Model.PlaneModels)
+                    {
+                        <li class="list-group-item">@item.Name</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <br />
+                <h4>Please add planes to your preferreble list to use filters</h4>
+            }
+
+
+            <div class="btn-group w-25" style="margin-top:15%">
+                <a class="btn btn-outline-info w-auto h-25  box-shadow mb-3 " asp-action="Edit" asp-controller="User" asp-route-id="@Model.Id">
+                    Edit
+                </a>
+                <a class="btn btn-outline-dark w-auto  box-shadow mb-3 w-25" asp-controller="Home" asp-action="Index">Back</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>

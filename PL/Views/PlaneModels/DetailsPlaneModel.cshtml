@@ -1,0 +1,32 @@
+﻿@model PL.Models.PlaneModelViewModel
+
+@{
+    ViewData["Title"] = "DetailsPlaneModel";
+}
+<div class="container">
+    <div class=" row box-shadow">
+        <div class="col mt-lg-1 ">
+            <p class="h1 d-flex justify-content-center">@Model.Name</p>
+            <p class="h4 text-muted d-flex justify-content-center">@Model.ProductionYear.Year</p>
+            <div class="text-center">
+                <img class="mt-lg-3 img-fluid rounded" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.Image))" alt="Plane Image" />
+            </div>
+            <div class="mt-md-5 ">
+                <p class="h3  d-flex justify-content-center">Description</p>
+                <br />
+                <p class="h5  d-flex justify-content-center">@Model.Description</p>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="row mt-md-3">
+        <div class="col btn-group">
+            @if (User.IsInRole("1"))
+            {
+                <a class="btn btn-primary" asp-action="edit" asp-controller="PlaneModels" asp-route-id="@Model.Id">Edit</a>
+            }
+            <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>

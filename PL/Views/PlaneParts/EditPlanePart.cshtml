@@ -1,0 +1,55 @@
+﻿@model PL.Models.PlanePartViewModel
+
+@{
+    ViewData["Title"] = "EditPlanePart";
+}
+<div class="container">
+    <h1>Edit Detail Data</h1>
+
+    <div class="row box-shadow">
+        <div class="col-md-4">
+            <form asp-action="EditPlanePart">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" placeholder="@Model.Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ManufacturingDate" class="control-label">Manufacture date</label>
+                    <input asp-for="ManufacturingDate" class="form-control" placeholder="@Model.ManufacturingDate" />
+                    <span asp-validation-for="ManufacturingDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" placeholder="@Model.Price" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" placeholder="@Model.Description" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SerialNumber" class="control-label">Serial Number</label>
+                    <input asp-for="SerialNumber" class="form-control" placeholder="@Model.SerialNumber" />
+                    <span asp-validation-for="SerialNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Manufacturer" class="control-label"></label>
+                    <input asp-for="Manufacturer" class="form-control" placeholder="@Model.Manufacturer" />
+                    <span asp-validation-for="Manufacturer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Plane Models</label>
+                    <select asp-for="PlaneModelId" class="form-control custom-select" asp-items="@(new SelectList(ViewBag.PlaneModels,"Id","Name"))"></select>
+                </div>
+                <div class="form-group btn-group">
+                    <input type="submit" value="Save" class="btn btn-primary" asp-action="Edit" asp-controller="PlaneParts" />
+                    <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

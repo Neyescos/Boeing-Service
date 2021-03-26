@@ -1,0 +1,42 @@
+﻿@model PL.Models.PlaneModelViewModel
+
+@{
+    ViewData["Title"] = "CreatePlaneModel";
+}
+<div class="container">
+    <h1>Add new Plane Model</h1>
+
+    <div class="row box-shadow">
+        <div class="col-md-4">
+            <form asp-action="CreatePlaneModel" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProductionYear" class="control-label">Production Year</label>
+                    <input asp-for="ProductionYear" class="form-control" />
+                    <span asp-validation-for="ProductionYear" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>Upload image</label>
+                    <input type="file" name="uploadedImage" class="btn btn-outline-info" accept="image/*" />
+                </div>
+                <div class="form-group btn-group">
+                    <input type="submit" value="Add" class="btn btn-primary" asp-action="Create" asp-controller="PlaneModels" />
+                    <a class="btn btn-outline-dark" asp-action="Index">Back to List</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+

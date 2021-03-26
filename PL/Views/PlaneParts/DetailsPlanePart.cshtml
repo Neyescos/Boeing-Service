@@ -1,0 +1,60 @@
+﻿@model PL.Models.PlanePartViewModel
+
+@{
+    ViewData["Title"] = "DetailsPlanePart";
+}
+<div class="container">
+    <div class="row box-shadow ">
+        <h1 class="col display-4 d-flex justify-content-center">Details</h1>
+    </div>
+    <div class="row box-shadow">
+        <div class="col mt-md-4">
+            <p class="h1">@Model.Name</p>
+            <p class="h4 text-muted">@Model.SerialNumber</p>
+            <dl>
+                <dt class="col-sm-2">
+                    Manufacturing Date
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ManufacturingDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Manufacturer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Manufacturer)
+                </dd>
+                <dt class="col-sm-2">
+                    Plane Model
+                </dt>
+                <dd class="col-sm-10">
+                    @ViewBag.PlaneModel.Name
+                </dd>
+            </dl>
+
+        </div>
+        <div class="col mt-lg-3">
+            <img src="https://media.istockphoto.com/vectors/plane-service-banner-aircraft-maintenance-inspection-and-repair-of-vector-id1139546114?k=6&m=1139546114&s=612x612&w=0&h=MPgv9VIb97prCvRA9CgSZFAvoAWMZ4gMdqBhTsZnGPM=" alt="Cool image"/>
+            <div class="m-md-5">
+                <p class="h2">Price</p>
+                <p class="h1">@Model.Price $</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col btn-group">
+            @if (User.IsInRole("1"))
+            {
+                <a class=" btn btn-info" asp-action="Edit" asp-controller="PlaneParts" asp-route-id="@Model.Id">Edit</a>
+            }
+            <a class=" btn btn-outline-dark" asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>

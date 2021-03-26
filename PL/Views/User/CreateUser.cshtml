@@ -1,0 +1,37 @@
+﻿@model PL.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "CreateUser";
+}
+<body class="text-center ">
+    <div class="container">
+        <div class="container  align-items-center">
+            <div class="row py-5 mt-4 align-items-center">
+                <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+                    <img src="https://i.pinimg.com/originals/c0/aa/18/c0aa18430c7987f2b0c6bbd027228ea5.png" alt="" class="img-fluid mb-3 d-none d-md-block">
+                    <h1>Create an Account</h1>
+                    <p class="font-italic text-muted mb-0">To get access to features and lists of products.</p>
+                </div>
+                <div class="сol-md-7 col-lg-6 ml-auto box-shadow ">
+                    <h1 class="hide text-dark">Sign In</h1>
+                    <form asp-action="CreateUser">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group input-group">
+                            <input asp-for="Name" class="form-control" placeholder="Login" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group input-group">
+                            <input asp-for="Password" class="form-control" placeholder="Password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group btn-group">
+                            <input type="submit" value="Register" class="btn btn-info " style="width : 150px" />
+                            <a class="btn btn-outline-dark " style="width : 150px" asp-controller="Home" asp-action="Index">Back to home</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

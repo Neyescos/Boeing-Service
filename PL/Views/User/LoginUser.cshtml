@@ -1,0 +1,41 @@
+﻿@model PL.Models.LoginModel
+@{
+    ViewData["Title"] = "LoginUser";
+}
+<body class="text-center ">
+    <div class="container">
+        <div class="container  align-items-center">
+
+            <div class="row py-5 mt-4 align-items-center ">
+                <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+                    <img src="https://webstockreview.net/images/flying-clipart-flight-ticket-5.jpg" alt="" class="img-fluid mb-3 d-none d-md-block">
+                    <h1>Boeng Service</h1>
+                    <p class="font-italic text-muted mb-0">Use our website to find details for your company planes, with prices and other features.</p>
+                </div>
+
+                <!--Frame with shadow-->
+                <div class="col-md-7 col-lg-6 ml-auto box-shadow ">
+                    <h1 class="hide text-dark">Log In</h1>
+                    <form asp-action="Login" class="justify-content-md-center">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <!--User Name-->
+                        <div class="form-group input-group">
+                            <input asp-for="Login" class="form-control text-muted mb-0" placeholder="Login" required />
+                            <span asp-validation-for="Login" class="text-danger"></span>
+                        </div>
+                        <!--Password-->
+                        <div class="form-group input-group">
+                            <input asp-for="Password" class="form-control text-muted mb-0" placeholder="Password" required />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group btn-group">
+                            <input type="submit" value="Log In" class="btn btn-info" style="width : 150px" />
+                            <a class="btn btn-outline-dark" style="width : 150px" asp-controller="Home" asp-action="Index">Back to home</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

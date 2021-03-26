@@ -1,0 +1,146 @@
+﻿@model IEnumerable<PL.Models.PlanePartViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row  d-flex justify-content-between">
+    <div class="col col-sm-1 box-shadow ml-md-5">
+
+        <p class="h5 text-muted">Filter Options</p>
+        <form class="input-group" method="post">
+            <input class="form-control w-75" type="search" placeholder="Search" aria-label="Search" id="searchValue" name="searchValue">
+            <button class="btn btn-light w-25 border-dark" asp-action="Index" type="submit" style="background-image: url(https://www.transparentpng.com/thumb/search-button/f2qMti-search-button-square-blue-free-png.png);
+        background-position: center;
+        background-size: 35px;
+    "></button>
+        </form>
+        <form class="form-group input-group " method="post">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="isChecked" name="isChecked" value="true" />
+                <label class="form-check-label" for="isChecked">Use Preferences</label>
+            </div>
+            <p class="text-muted mb-md-1 mt-md-1">Filter by date</p>
+            <div>
+                <label for="startDate">From</label>
+                <br />
+                <input class="w-75" type="date" id="startDate" name="startDate" placeholder="Start Date" />
+                <br />
+                <label class="mt-md-1" for="endDate">To</label>
+                <br />
+                <input class="w-75" type="date" id="endDate" name="endDate" placeholder="End Date" />
+            </div>
+            <p class="text-muted mb-md-1  mt-md-2">Filter by price</p>
+            <div class="mt-md-1">
+                <label for="startPrice">From</label>
+                <input class="w-100" type="text" id="startPrice" name="startPrice" placeholder="Start price" />
+            </div>
+            <div>
+                <label class="mt-md-1" for="endPrice">To</label>
+                <input class="w-100" type="text" id="endPrice" name="endPrice" placeholder="End Price" />
+            </div>
+
+            <div class="btn-group mt-md-5">
+                <input class="btn btn-outline-info " type="submit" value="Apply">
+                <a class="btn btn-dark mr-md-4" asp-action="Index">Remove</a>
+            </div>
+
+        </form>
+
+
+    </div>
+    <div class="col col-lg-9">
+        <div>
+            <h1 class="display-4 d-flex justify-content-center">Parts</h1>
+            @if (this.User.IsInRole("1"))
+            {
+                <p>
+                    <a class="btn btn-primary" asp-action="Create">Create New</a>
+                </p>
+            }
+            <table class="table thead-dark text-dark bg-light box-shadow">
+                <thead>
+                    <tr>
+                        <th>
+                            <a class="btn btn-light" asp-action="SortByName" asp-controller="PlaneParts">@Html.DisplayNameFor(model => model.Name)</a>
+                        </th>
+                        <th>
+                            <a class="btn btn-light" asp-action="SortByYear" asp-controller="PlaneParts">Manufacture date</a>
+                        </th>
+                        <th>
+                            <a class="btn btn-light" asp-action="SortByPrice" asp-controller="PlaneParts">@Html.DisplayNameFor(model => model.Price)</a>
+                        </th>
+                        <th>
+                            <a class="btn btn-light" asp-action="SortByManufacturer" asp-controller="PlaneParts">@Html.DisplayNameFor(model => model.Manufacturer)</a>
+                        </th>
+                        <th>
+                            <a class="btn btn-light" asp-action="SortByPlaneModel" asp-controller="PlaneParts">Plane Model</a>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ManufacturingDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Manufacturer)
+                            </td>
+                            <td>
+                                <p>@item.PlaneModel.Name</p>
+                            </td>
+
+                            <td>
+                                <form class="btn-group">
+                                    <a class="btn btn-outline-info" asp-action="Details" asp-controller="PlaneParts" asp-route-id="@item.Id">Details</a>
+                                    @if (User.IsInRole("1"))
+                                    {
+                                        <a class="btn btn-outline-primary" asp-action="Edit" asp-controller="PlaneParts" asp-route-id="@item.Id">Edit</a>
+                                        <a class="btn btn-outline-danger" asp-action="Delete" asp-controller="PlaneParts" asp-route-id="@item.Id">Delete</a>
+                                    }
+                                </form>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@if (ViewBag.Parts != null)
+{
+    <div class="row d-flex justify-content-center">
+        @{
+            int i = 2;
+            int j = 0;
+        }
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" asp-route-id="@{--i;} ">Previous</a></li>
+                @{ i -= 1;}
+                @for (; i <= ViewBag.Parts.Count / 8; ++i)
+                {
+                    ++j;
+                    <li class="page-item"><a class="page-link" asp-route-id="@i">@j</a></li>
+                }
+                @{--j;}
+                <li class="page-item"><a class="page-link" asp-route-id="@j">Next</a></li>
+            </ul>
+
+
+        </nav>
+
+
+    </div>
+}
+
+
